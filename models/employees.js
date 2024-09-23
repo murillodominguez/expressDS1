@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
             gross_salary: {
                 type: DataTypes.DOUBLE
             },
+            liquid_salary: {
+                type: DataTypes.DOUBLE
+            },
             department: {
                 type: DataTypes.SMALLINT(1)
             }

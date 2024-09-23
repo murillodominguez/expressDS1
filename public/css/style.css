@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
-*{
+
+/* main */
+* {
     margin: 0;
     padding: 0;
     font-family: "Work Sans", sans-serif;
@@ -8,7 +10,7 @@
     font-style: normal;
 }
 
-header{
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -19,12 +21,12 @@ header{
     margin-bottom: 20px;
 }
 
-.logocontainer{
+.logocontainer {
     padding-right: 100px;
     padding-block: 10px;
 }
 
-.logo::after{
+.logo::after {
     content: 'sistema de gestões operacionais';
     font-size: 10px;
     font-weight: 400;
@@ -33,13 +35,18 @@ header{
     left: 40px;
 }
 
-ul li{
+ul li {
     list-style: none;
 }
 
-nav ul{
+nav ul {
     display: flex;
     gap: 20px;
+}
+
+nav a:hover {
+    color: rgba(0, 0, 0, 0.5);
+
 }
 
 a:visited{
@@ -53,14 +60,6 @@ a{
     font-style: none;
 }
 
-form{
-    display: flex;
-    flex-direction: column;
-    width: 400px;
-    margin: 0 auto;
-    gap: 10px;
-}
-
 .pagetitle{
     width: fit-content;
     margin: 0 auto;
@@ -72,9 +71,72 @@ form{
     transition: all 100ms ease-in;
 }
 
+/* listAll */
+form{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: 0 auto;
+    gap: 10px;
+}
+
+th {
+    background-color: rgba(128, 128, 128, 0.25);
+    border-radius: 0.75rem;
+    text-align: center;
+    padding: 7.75px 10px;
+}
+
+td { 
+    padding: 10px;
+    text-align: center;
+}
+
+.td-name {
+    text-align: left;
+}
+
+table a {
+    background-color: lightgreen;
+    color: rgba(0, 0, 0);
+    padding: 5px;
+    border-radius: 0.5rem;
+}
+
+table a:hover {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.td-a-delete:hover {
+    color: rgba(255, 0, 0, 0.75);
+}
+
+/* insertEmployees */
+table{
+    width: fit-content;
+    margin: 0 auto;
+}
+
+label {
+    margin-top: 5px;
+}
+
+input {
+    padding: 5px;
+    margin-bottom: 5px;
+    border-style: solid;
+    border-radius: 0.5rem;
+}
+
+input:focus{
+    outline: none;
+}
+
 button{
+    font-size: 1.2rem;
     outline: none;
     border: 1px solid black;
+    border-radius: 0.25rem;
     width: fit-content;
     padding: 5px;
     align-self: center;
@@ -84,13 +146,4 @@ button{
 button:hover{
     cursor: pointer;
     background-color: rgb(0, 152, 0);
-}
-
-input:focus{
-    outline: none;
-}
-
-table{
-    width: fit-content;
-    margin: 0 auto;
 }

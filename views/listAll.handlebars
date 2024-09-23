@@ -4,19 +4,21 @@
     <thead>
         <th>#</th>
         <th>Nome</th>
-        <th>Salário</th>
+        <th>Salário Bruto</th>
+        <th>Salário Líquido</th>
         <th>Departamento</th>
-        <th colspan="2"></th>
+        <th colspan="2">Ferramentas</th>
     </thead>
     <tbody>
         {{#each data}}
         <tr>
             <td>{{ id }}</td>
-            <td>{{ name }}</td>
-            <td>{{ gross_salary }}</td>
+            <td class="td-name">{{ name }}</td>
+            <td>R${{ gross_salary }}</td>
+            <td>R${{ liquid_salary }}</td>
             <td>{{ department }}</td>
-            <td><a href="/edit/{{ id }}">Edit</a> </td>
-            <td><a href="/delete/{{ id }}">Delete</a></td>
+            <td><a href="/edit/{{ id }}" ><i class="bi bi-pencil"></i> Edit</a> </td>
+            <td><a href="/delete/{{ id }}" class="td-a-delete"><i class="bi bi-trash"></i> Delete</a></td>
         </tr>
         {{/each}}
     </tbody>
