@@ -1,0 +1,23 @@
+<h1 class="pagetitle">Listando</h1>
+
+<table>
+    <thead>
+        <th>#</th>
+        <th>Nome</th>
+        <th>Salário</th>
+        <th>Departamento</th>
+        <th colspan="2"></th>
+    </thead>
+    <tbody>
+        {{#each data}}
+        <tr>
+            <td>{{ id }}</td>
+            <td>{{ name }}</td>
+            <td>{{ gross_salary }}</td>
+            <td>{{ department }}</td>
+            <td><a href="/edit/{{ id }}">Edit</a> </td>
+            <td><a href="/delete/{{ id }}">Delete</a></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
