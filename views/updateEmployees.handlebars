@@ -1,0 +1,11 @@
+<h1 class="pagetitle">Editando o empregado {{data.name}}:</h1>
+<form action="/update" method="post">
+    <label for="name">Nome:</label>
+    <input name="id_for_updating" type="hidden" value="{{data.id}}">
+    <input id="name" name="name" type="text" value="{{data.name}}">
+    <label for="gross_salary">Salário (bruto):</label>
+    <input id="gross_salary" name="gross_salary" type="text" value="{{data.gross_salary}}">
+    <label for="department">Departamento:</label>
+    <input id="department" name="department" type="text" value="{{data.department}}" placeholder="1 - Administrativo, 2 - Designer, 3 - Contabil, 4 - Fábrica">
+    <button class="submit" type="submit">Enviar</button>
+</form>

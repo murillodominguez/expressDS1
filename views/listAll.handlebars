@@ -1,25 +1,102 @@
 <h1 class="pagetitle">Listando</h1>
 
+<div class="search">
+    <a onclick="addSearch()"><i class="bi bi-search"></i></a>
+    <input id="search" name="search" type="text" placeholder="Pesquisar por nome...">
+    <script>
+        searchInput = document.querySelector('#search');
+        searchInput.addEventListener('keydown', (e) => { if(e.keyCode == 13){ addSearch(); } })
+        searchInput.addEventListener('change', addSearch = () => { window.location = '?search='+searchInput.value; if (searchInput.value == "") { window.location = '/' }; });
+    </script>
+</div>
 <table>
     <thead>
-        <th>#</th>
-        <th>Nome</th>
-        <th>Salário Bruto</th>
-        <th>Salário Líquido</th>
-        <th>Departamento</th>
-        <th colspan="2">Ferramentas</th>
+        <th><div># <span><button class="sort-button" onclick="propOrder('id', -1)">▲</button><button class="sort-button" onclick="propOrder('id', 1)">▼</button></span></div></th>
+        <th><div>Nome <span><button class="sort-button" onclick="propOrder('name', -1)">▲</button><button class="sort-button" onclick="propOrder('name', 1)">▼</button></span></div></th>
+        <th><div>Salário Bruto <span><button class="sort-button" onclick="propOrder('gross_salary', -1)">▲</button><button class="sort-button" onclick="propOrder('gross_salary', 1)">▼</button></span></div></th>
+        <th><div>Salário Líquido <span><button class="sort-button" onclick="propOrder('liquid_salary', -1)">▲</button><button class="sort-button" onclick="propOrder('liquid_salary', 1)">▼</button></span></div></th>
+        <th><div>Departamento <span><button class="sort-button" onclick="propOrder('department', -1)">▲</button><button class="sort-button" onclick="propOrder('department', 1)">▼</button></span></div></th>
+        <th colspan="2"><div>Ferramentas</div></th>
     </thead>
-    <tbody>
+    <tbody id="tbody">
         {{#each data}}
-        <tr>
+        <tr class="employee">
             <td>{{ id }}</td>
             <td class="td-name">{{ name }}</td>
             <td>R${{ gross_salary }}</td>
             <td>R${{ liquid_salary }}</td>
             <td>{{ department }}</td>
-            <td><a href="/edit/{{ id }}" ><i class="bi bi-pencil"></i> Edit</a> </td>
+            <td><a href="/edit/{{ id }}" ><i class="bi bi-pencil"></i> Edit</a></td>
             <td><a href="/delete/{{ id }}" class="td-a-delete"><i class="bi bi-trash"></i> Delete</a></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+<script>
+    $(".sort-button").click(function () {
+        $(".sort-button").removeClass("active");
+        $(this).addClass("active");
+    })
+    
+        var properties = ['id', 'name', 'gross_salary', 'liquid_salary', 'department'];
+        var rows = $('.employee');
+        var employeeList = [];
+        for(let row of rows){
+            employee = {};
+            for ([i, property] of properties.entries()){
+                employee[property] = row.children[i].innerHTML; 
+                console.log(i);
+            }
+
+            employeeList.push(employee);
+        }
+
+
+    function createTable(employeeList){
+        const tbody = document.getElementById('tbody');
+        while(tbody.firstChild){
+            tbody.removeChild(tbody.firstChild);
+        }
+
+        for(let employee of employeeList){
+            let tr = document.createElement("tr");
+            tr.classList.add('employee');
+            console.log(Object.keys(employee));
+            for(i = 0; i < Object.keys(employee).length; i++){
+                let td = document.createElement("td");
+                td.innerHTML = employee[Object.keys(employee)[i]];
+                tr.appendChild(td);
+            }
+            let edit = document.createElement("td");
+            edit.innerHTML = '<a href="/edit/'+ employee['id'] +'"><i class="bi bi-pencil"></i> Edit</a>';
+            let del = document.createElement("td");
+            del.innerHTML = '<td><a href="/delete/'+ employee['id']  +'" class="td-a-delete"><i class="bi bi-trash"></i> Delete</a></td>';
+            tr.appendChild(edit);
+            tr.appendChild(del);
+            tbody.appendChild(tr); 
+        }
+    }
+    function propOrder(prop, order){
+        employeeList = orderBy(employeeList, prop, order);
+        createTable(employeeList);
+        console.log(employeeList);
+        console.log(prop, order);
+    
+    }
+
+    function orderBy(array, prop, order = 1){
+        console.log(array.sort());
+        if(prop != 'name' && prop != 'department' && prop != 'id'){
+            return array.sort((a,b) => order*Number(a[prop].slice(2)) - order*Number(b[prop].slice(2)));
+        }
+
+        if(prop == 'id'){
+            return array.sort((a,b) => order*Number(a[prop]) - order*Number(b[prop]));
+        }
+
+        if(order == -1){
+            return array.sort((a, b) => (a[prop].toLowerCase() > b[prop].toLowerCase() ? -1 : 1));
+        }
+            return array.sort((a, b) => (a[prop].toLowerCase() > b[prop].toLowerCase() ? -1 : 1)).reverse();
+    };
+</script>

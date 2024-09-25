@@ -72,12 +72,49 @@ a{
 }
 
 /* listAll */
-form{
+.search {
+    margin: 15px 0px;
+    text-align: center;
+}
+
+th div {
     display: flex;
-    flex-direction: column;
-    width: 400px;
+    gap: 5px;
+    justify-content: center;
+}
+
+th div span {
+    display: inline-flex;
+    flex-flow: column nowrap;
+    align-content: space-around;;
+}
+
+th div span button {
+    font-size: 0.5rem;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    opacity: 0.15;
+}
+
+th div span button.active {
+    opacity: 1;
+}
+
+table {
+    width: fit-content;
     margin: 0 auto;
-    gap: 10px;
+}
+
+table a {
+    background-color: lightgreen;
+    color: rgba(0, 0, 0);
+    padding: 5px;
+    border-radius: 0.5rem;
+}
+
+table a:hover {
+    color: rgba(0, 0, 0, 0.5);
 }
 
 th {
@@ -96,25 +133,17 @@ td {
     text-align: left;
 }
 
-table a {
-    background-color: lightgreen;
-    color: rgba(0, 0, 0);
-    padding: 5px;
-    border-radius: 0.5rem;
-}
-
-table a:hover {
-    color: rgba(0, 0, 0, 0.5);
-}
-
 .td-a-delete:hover {
     color: rgba(255, 0, 0, 0.75);
 }
 
 /* insertEmployees */
-table{
-    width: fit-content;
+form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
     margin: 0 auto;
+    gap: 10px;
 }
 
 label {
